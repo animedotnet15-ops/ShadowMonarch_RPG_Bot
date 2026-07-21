@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: shadow-monarch-rpg-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: OWNER_ID
+        sync: false
+      - key: DATABASE_PATH
+        value: /var/data/shadowmonarch.db
+    disk:
+      name: shadowmonarch-data
+      mountPath: /var/data
+      sizeGB: 1
